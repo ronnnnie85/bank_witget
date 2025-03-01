@@ -13,7 +13,14 @@ def mask_account_card(account_card_data: str) -> str:
 
     prefix, number = match.groups()
 
-    if prefix.lower().startswith("счет"):  # Первым идет Счет, значит обрабатываем как счет
+    # if prefix.lower().startswith("счет"):  # Первым идет Счет, значит обрабатываем как счет
+    #     masked_number = get_mask_account(int(number))
+    # elif len(number) == 16:  # Обрабатываем как карту
+    #     masked_number = get_mask_card_number(int(number))
+    # else:
+    #     return "Некорректный формат данных"
+
+    if len(number) == 20:  # Первым идет Счет, значит обрабатываем как счет
         masked_number = get_mask_account(int(number))
     elif len(number) == 16:  # Обрабатываем как карту
         masked_number = get_mask_card_number(int(number))
