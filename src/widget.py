@@ -27,7 +27,7 @@ def mask_account_card(account_card_data: str) -> str:
     else:
         return "Некорректный формат данных"
 
-    return f"{prefix} {masked_number}"
+    return f"{prefix.strip()} {masked_number}"
 
 
 def get_date(raw_date: str) -> str:
