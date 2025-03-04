@@ -1,5 +1,5 @@
-from typing import Union
 from datetime import datetime
+from typing import Union
 
 
 def filter_by_state(
@@ -15,6 +15,6 @@ def sort_by_date(
     """Принимает список и ключ, возвращает отсортированный список"""
     return sorted(
         lst_dct,
-        key=lambda x: datetime.min if x.get("date") is None else datetime.fromisoformat(x.get("date")),
+        key=lambda x: datetime.min if x.get("date") is None else datetime.fromisoformat(str(x.get("date"))),
         reverse=descending,
     )
