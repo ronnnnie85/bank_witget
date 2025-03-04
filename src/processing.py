@@ -13,5 +13,8 @@ def sort_by_date(
     lst_dct: list[dict[str, Union[str, int]]], descending: bool = True
 ) -> list[dict[str, Union[str, int]]]:
     """Принимает список и ключ, возвращает отсортированный список"""
-    key_lambda = lambda x: datetime.min if x.get("date") is None else  datetime.fromisoformat(x.get("date"))
-    return sorted(lst_dct, key=key_lambda, reverse=descending)
+    return sorted(
+        lst_dct,
+        key=lambda x: datetime.min if x.get("date") is None else datetime.fromisoformat(x.get("date")),
+        reverse=descending,
+    )
