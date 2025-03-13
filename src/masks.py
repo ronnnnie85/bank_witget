@@ -6,7 +6,7 @@ def get_mask_card_number(card_number: Union[int, str]) -> str:
     if card_number == "":
         raise ValueError("Ошибка: пустое значение номера карты.")
 
-    if not (type(card_number) == int or (type(card_number) == str and card_number.isdigit())):
+    if is_wrong_input_format(card_number):
         raise TypeError("Ошибка: некорректный формат входных данных.")
 
     card_number_str = str(card_number)  # Преобразуем номер карты в строку
@@ -26,10 +26,24 @@ def get_mask_card_number(card_number: Union[int, str]) -> str:
 
 def get_mask_account(account_number: Union[int, str]) -> str:
     """Принимает на вход номер счета в виде числа и возвращает маску номера по правилу"""
+    if account_number == "":
+        raise ValueError("Ошибка: пустое значение номера счета.")
+
+    if is_wrong_input_format(account_number):
+        raise TypeError("Ошибка: некорректный формат входных данных.")
+
     account_number_str = str(account_number)  # Преобразуем номер счета в строку
+
+    if len(account_number_str) != 20 :
+        raise ValueError("Ошибка: некорректная длина входных данных.")
 
     last_four_digits = account_number_str[-4:]
 
     masked_account = f"**{last_four_digits}"
 
     return masked_account
+
+
+def is_wrong_input_format(number: Union[int, str]) -> bool:
+    """ Вспомогательная функция проверки корректности данных"""
+    return not (type(number) == int or (type(number) == str and number.isdigit()))
