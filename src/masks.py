@@ -2,7 +2,8 @@ from typing import Union
 
 
 def get_mask_card_number(card_number: Union[int, str]) -> str:
-    """Принимает на вход номер карты в виде числа и возвращает маску номера по правилу"""
+    """Принимает на вход номер карты в виде числа
+    и возвращает маску номера по правилу"""
     if card_number == "":
         raise ValueError("Ошибка: пустое значение номера карты.")
 
@@ -27,7 +28,8 @@ def get_mask_card_number(card_number: Union[int, str]) -> str:
 
 
 def get_mask_account(account_number: Union[int, str]) -> str:
-    """Принимает на вход номер счета в виде числа и возвращает маску номера по правилу"""
+    """Принимает на вход номер счета в виде числа
+    и возвращает маску номера по правилу"""
     if account_number == "":
         raise ValueError("Ошибка: пустое значение номера счета.")
 
@@ -51,5 +53,5 @@ def get_mask_account(account_number: Union[int, str]) -> str:
 def is_wrong_input_format(number: Union[int, str]) -> bool:
     """Вспомогательная функция проверки корректности данных"""
     return not (
-        type(number) == int or (type(number) == str and number.isdigit())
+        type(number) is int or (type(number) is str and number.isdigit())
     )

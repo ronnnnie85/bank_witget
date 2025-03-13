@@ -1,8 +1,10 @@
 import pytest
-from mypy.dmypy.client import request
 
-from src.masks import (get_mask_account, get_mask_card_number,
-                       is_wrong_input_format)
+from src.masks import (
+    get_mask_account,
+    get_mask_card_number,
+    is_wrong_input_format,
+)
 
 
 # Функция get_mask_card_number
@@ -87,9 +89,9 @@ def test_get_mask_account_wrong_len(account):
 )
 def test_is_wrong_input_format_wrong(request, account_fixture):
     account = request.getfixturevalue(account_fixture)
-    assert is_wrong_input_format(account) == True
+    assert is_wrong_input_format(account) is True
 
 
 @pytest.mark.parametrize("account", ["01234568", 5678922])
 def test_is_wrong_input_format_not_wrong(account):
-    assert is_wrong_input_format(account) == False
+    assert is_wrong_input_format(account) is False

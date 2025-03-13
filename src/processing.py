@@ -14,7 +14,7 @@ def sort_by_date(
     lst_dct: list[dict[str, Union[str, int]]], descending: bool = True
 ) -> list[dict[str, Union[str, int]]]:
     """Принимает список и ключ, возвращает отсортированный список"""
-    # Сортирую, ключ - объект datetime, получаемы из строковой даты в формате ISO
+    # Сортирую, ключ - объект datetime, из строковой даты в формате ISO
     return sorted(
         lst_dct,
         key=lambda x: (
