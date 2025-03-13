@@ -17,6 +17,10 @@ def sort_by_date(
     # Сортирую, ключ - объект datetime, получаемы из строковой даты в формате ISO
     return sorted(
         lst_dct,
-        key=lambda x: datetime.min if x.get("date") is None else datetime.fromisoformat(str(x.get("date"))),
+        key=lambda x: (
+            datetime.min
+            if x.get("date") is None
+            else datetime.fromisoformat(str(x.get("date")))
+        ),
         reverse=descending,
     )

@@ -6,7 +6,9 @@ from .masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(account_card_data: str) -> str:
     """Обрабатывает информацию о картах и счетах"""
-    match = re.search(r"(\D+)\s(\d+)", account_card_data)  # Получаю группировки строки по шаблону (буквы) (цифры)
+    match = re.search(
+        r"(\D+)\s(\d+)", account_card_data
+    )  # Получаю группировки строки по шаблону (буквы) (цифры)
 
     if match is None:
         return "Некорректный формат данных"
@@ -32,6 +34,8 @@ def mask_account_card(account_card_data: str) -> str:
 
 def get_date(raw_date: str) -> str:
     """Конвертирует строку с датой из формата ISO 8601 в DD-MM-YYYY"""
-    dt = datetime.strptime(raw_date, "%Y-%m-%dT%H:%M:%S.%f")  # Получаем из строки объект datetime по шаблону
+    dt = datetime.strptime(
+        raw_date, "%Y-%m-%dT%H:%M:%S.%f"
+    )  # Получаем из строки объект datetime по шаблону
 
     return dt.strftime("%d.%m.%Y")  # Преобразуем в нужный формат в строку
