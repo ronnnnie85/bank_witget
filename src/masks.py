@@ -3,13 +3,13 @@ from typing import Union
 
 def get_mask_card_number(card_number: Union[int, str]) -> str:
     """Принимает на вход номер карты в виде числа и возвращает маску номера по правилу"""
-    if not (type(card_number) == int or type(card_number) == str):
+    if card_number == "":
+        raise ValueError("Ошибка: пустое значение номера карты.")
+
+    if not (type(card_number) == int or (type(card_number) == str and card_number.isdigit())):
         raise TypeError("Ошибка: некорректный формат входных данных.")
 
     card_number_str = str(card_number)  # Преобразуем номер карты в строку
-
-    if card_number_str == "":
-        raise ValueError("Ошибка: пустое значение номера карты.")
 
     if len(card_number_str) != 16 :
         raise ValueError("Ошибка: некорректная длина входных данных.")
