@@ -33,9 +33,9 @@ exclude = 'venv'
 
 [tool.isort]
 # максимальная длина строки
-line_length = 119
+line_length = 79
 
 [tool.black]
 # максимальная длина строки
-line_length = 119
+line_length = 79
 exclude = '.git'

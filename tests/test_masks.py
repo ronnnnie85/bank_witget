@@ -5,8 +5,9 @@ from src.masks import get_mask_card_number, get_mask_account, is_wrong_input_for
 
 
 # Функция get_mask_card_number
-@pytest.mark.parametrize("card_number, expected", [(1234567887654321, "1234 56** **** 4321"),
-                                                   ("9876543219876543", "9876 54** **** 6543")])
+@pytest.mark.parametrize(
+    "card_number, expected", [(1234567887654321, "1234 56** **** 4321"), ("9876543219876543", "9876 54** **** 6543")]
+)
 def test_get_mask_card_number(card_number, expected):
     assert get_mask_card_number(card_number) == expected
 
@@ -36,8 +37,7 @@ def test_get_mask_card_number_wrong_len(card_number):
 
 
 # Функция get_mask_account
-@pytest.mark.parametrize("account, expected", [(12345678876543212224, "**2224"),
-                                                   ("98765432198765433538", "**3538")])
+@pytest.mark.parametrize("account, expected", [(12345678876543212224, "**2224"), ("98765432198765433538", "**3538")])
 def test_get_mask_account(account, expected):
     assert get_mask_account(account) == expected
 
