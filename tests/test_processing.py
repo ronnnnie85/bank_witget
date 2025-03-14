@@ -1,6 +1,6 @@
 import pytest
 
-from src.processing import filter_by_state, sort_by_date
+from src.processing import filter_by_state, is_wrong_parameter, sort_by_date
 
 
 # Функция mask_account_card
@@ -164,3 +164,18 @@ def test_sort_by_date_wrong_date(data):
         sort_by_date(data)
 
     assert str(exc_info.value) == "Ошибка: некорректный формат даты."
+
+
+@pytest.mark.parametrize(
+    "list_fixture, expected",
+    [
+        ("wrong_type_col", True),
+        ("wrong_list", True),
+        ("wrong_dict_key", True),
+        ("wrong_dict_value", True),
+        ("right_list_1", False),
+    ],
+)
+def test_is_wrong_parameter(request, list_fixture, expected):
+    data = request.getfixturevalue(list_fixture)
+    assert is_wrong_parameter(data) == expected
