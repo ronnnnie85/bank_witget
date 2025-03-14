@@ -92,6 +92,7 @@ def test_is_wrong_input_format_wrong(request, account_fixture):
     assert is_wrong_input_format(account) is True
 
 
+# Функция is_wrong_input_format
 @pytest.mark.parametrize("account", ["01234568", 5678922])
 def test_is_wrong_input_format_not_wrong(account):
     assert is_wrong_input_format(account) is False

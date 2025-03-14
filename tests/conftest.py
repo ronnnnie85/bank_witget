@@ -9,3 +9,8 @@ def non_int_str_value():
 @pytest.fixture
 def non_digit_str_value():
     return "value"
+
+
+@pytest.fixture
+def non_str_value():
+    return 0.0
