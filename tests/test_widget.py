@@ -27,7 +27,8 @@ def test_mask_account_card_non_str_value(non_str_value):
 
 
 @pytest.mark.parametrize(
-    "data", ["Счет01010101020202020202", "1234567899876543", "Visa platinum"]
+    "data",
+    ["Счет01010101020202020202", "1234567899876543", "Visa platinum", ""],
 )
 def test_mask_account_card_wrong_template(data):
     with pytest.raises(ValueError) as exc_info:
@@ -65,7 +66,9 @@ def test_get_date_non_str_value(non_str_value):
     assert str(exc_info.value) == "Ошибка: некорректный тип входных данных."
 
 
-@pytest.mark.parametrize("date", ["2024-03-11", "2024/03/11", "12.04.2025"])
+@pytest.mark.parametrize(
+    "date", ["2024-03-11", "2024/03/11", "12.04.2025", ""]
+)
 def test_get_date_wrong_str_value(date):
     with pytest.raises(ValueError) as exc_info:
         get_date(date)
