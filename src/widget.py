@@ -1,3 +1,4 @@
+import calendar
 import re
 from datetime import datetime
 
@@ -35,14 +36,21 @@ def get_date(raw_date: str) -> str:
 
     pattern = (
         r"[0-9][0-9](0[1-9]|[1-9][0-9])\-(0[1-9]|1[0-2])-"
-        r"(0[1-9]|[1-2][0-9]|3[0-1])T([0-1][0-9]|2[0-3]):"
-        r"([0-4][0-9]|5[0-9]):([0-4][0-9]|5[0-9])"
+        r"(0[1-9]|[1-2][0-9]|3[0-1])"
+        r"T([0-1][0-9]|2[0-3]):([0-4][0-9]|5[0-9]):([0-4][0-9]|5[0-9])"
         r"(\.[0-9][0-9][0-9][0-9](0[1-9]|[1-9][0-9])){0,1}"
     )
     match = re.search(pattern, raw_date)
 
     if match is None:
         raise ValueError("Ошибка: некорректный формат даты.")
+
+    is_leap_year = calendar.isleap(int(raw_date[0:4]))
+    if raw_date[5:7] == "02" and (
+        (is_leap_year and int(raw_date[8:10]) > 29)
+        or (not is_leap_year and int(raw_date[8:10]) > 28)
+    ):
+        raise ValueError("Ошибка: некорректный формат даты в високосный год.")
 
     dt = datetime.fromisoformat(
         raw_date

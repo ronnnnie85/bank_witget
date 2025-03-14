@@ -71,3 +71,20 @@ def test_get_date_wrong_str_value(date):
         get_date(date)
 
     assert str(exc_info.value) == "Ошибка: некорректный формат даты."
+
+
+@pytest.mark.parametrize(
+    "date",
+    [
+        "2024-02-30T02:26:18.671407",
+        "2025-02-29T02:26:18.671407",
+    ],
+)
+def test_get_date_wrong_str_value_leap(date):
+    with pytest.raises(ValueError) as exc_info:
+        get_date(date)
+
+    assert (
+        str(exc_info.value)
+        == "Ошибка: некорректный формат даты в високосный год."
+    )
