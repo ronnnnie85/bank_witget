@@ -14,8 +14,12 @@ def filter_by_state(
                 raise TypeError("Ошибка: некорректный тип входных данных.")
             else:
                 for key, value in dct.items():
-                    if not (type(value) is str or  type(value) is int) or not isinstance(key, str):
-                        raise TypeError("Ошибка: некорректный тип входных данных.")
+                    if not (
+                        type(value) is str or type(value) is int
+                    ) or not isinstance(key, str):
+                        raise TypeError(
+                            "Ошибка: некорректный тип входных данных."
+                        )
 
     # Использую генератор списка для фильтрации
     return [dct for dct in lst_dct if dct.get("state", "") == state]

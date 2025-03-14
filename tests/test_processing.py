@@ -81,10 +81,14 @@ def test_filter_by_state_empty():
     ]
 
 
-@pytest.mark.parametrize("data, state", [
-    ({"key": "value"}, "CANCELED"),
-    (["key1", "key2"], "CANCELED"),
-    ([{
+@pytest.mark.parametrize(
+    "data, state",
+    [
+        ({"key": "value"}, "CANCELED"),
+        (["key1", "key2"], "CANCELED"),
+        (
+            [
+                {
                     15: 41428829,
                     "state": "EXECUTED",
                     "date": "2019-07-03T18:35:29.512364",
@@ -93,8 +97,13 @@ def test_filter_by_state_empty():
                     "id": 594226727,
                     "state": "CANCELED",
                     "date": "2018-09-12T21:27:25.241689",
-                },], "EXECUTED"),
-    ([{
+                },
+            ],
+            "EXECUTED",
+        ),
+        (
+            [
+                {
                     "id": 41428829,
                     "state": True,
                     "date": "2019-07-03T18:35:29.512364",
@@ -103,8 +112,12 @@ def test_filter_by_state_empty():
                     "id": 594226727,
                     "state": "CANCELED",
                     "date": "2018-09-12T21:27:25.241689",
-                },], "CANCELED"),
-])
+                },
+            ],
+            "CANCELED",
+        ),
+    ],
+)
 def test_filter_by_state_wrong_types(data, state):
     with pytest.raises(TypeError) as exc_info:
         filter_by_state(data, state)
