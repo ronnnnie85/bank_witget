@@ -1,16 +1,16 @@
-from typing import Iterator
+from typing import Any, Iterator
 
 
 def filter_by_currency(
     lst_transactions: list[
-        dict[str : int | str | dict[str : str | dict[str:str]]]
+        dict[str, int | str | dict[str, str | dict[str, str]]]
     ],
     currency: str,
-) -> Iterator[dict[str : int | str | dict[str : str | dict[str:str]]]]:
+) -> Iterator[dict[str, int | str | dict[str, str | dict[str, str]]]]:
     """Принимает на вход список словарей, представляющих транзакции.
     Возвращает итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной."""
-    filtered_transactions = filter(
+    filtered_transactions: Any = filter(
         lambda dct: dct.get("operationAmount", {})
         .get("currency", {})
         .get("code")
@@ -24,14 +24,16 @@ def filter_by_currency(
 
 def transaction_descriptions(
     lst_transactions: list[
-        dict[str : int | str | dict[str : str | dict[str:str]]]
+        dict[str, int | str | dict[str, str | dict[str, str]]]
     ],
 ) -> Iterator[str]:
-    """Принимает список словарей с транзакциями. Возвращает описание каждой операции по очереди."""
+    """Принимает список словарей с транзакциями.
+    Возвращает описание каждой операции по очереди."""
     lst_descriptions = [
-        dct.get("description", "")
+        str(dct.get("description"))
         for dct in lst_transactions
         if not dct.get("description") is None
+        and isinstance(dct.get("description"), str)
     ]
 
     for description in lst_descriptions:
@@ -39,7 +41,8 @@ def transaction_descriptions(
 
 
 def card_number_generator(begin: int, end: int) -> Iterator[str]:
-    """Принимает начальное и конечное значения для генерации. Возвращает номера карт в заданном диапазоне"""
+    """Принимает начальное и конечное значения для генерации.
+    Возвращает номера карт в заданном диапазоне"""
     if begin > end:
         begin, end = end, begin
 
@@ -48,6 +51,6 @@ def card_number_generator(begin: int, end: int) -> Iterator[str]:
     for card_num in lst_card_num:
         card_number = f"{card_num:016d}"
         formatted_card_number = " ".join(
-            [card_number[i : i + 4] for i in range(0, 16, 4)]
+            [card_number[i:i + 4] for i in range(0, 16, 4)]
         )
         yield formatted_card_number
