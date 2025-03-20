@@ -28,7 +28,7 @@ def transaction_descriptions(
     ],
 ) -> Iterator[str]:
     """Принимает список словарей с транзакциями. Возвращает описание каждой операции по очереди."""
-    pass
+    lst = [x.get]
 
 
 def card_number_generator(begin: int, end: int) -> Iterator[str]:

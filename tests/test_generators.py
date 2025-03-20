@@ -69,6 +69,11 @@ def test_filter_by_currency(true_transactions):
     }
 
 
+def test_filter_by_currency_another(true_transactions):
+    generator = filter_by_currency(true_transactions, "EUR")
+    assert list(generator) == []
+
+
 def test_filter_by_currency_empty():
     generator = filter_by_currency([], "USD")
     assert list(generator) == []
