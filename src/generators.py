@@ -3,10 +3,10 @@ from typing import Any, Iterator
 
 def filter_by_currency(
     lst_transactions: list[
-        dict[str, int | str | dict[str, str | dict[str, str]]]
+        dict[str, int | str | dict]
     ],
     currency: str,
-) -> Iterator[dict[str, int | str | dict[str, str | dict[str, str]]]]:
+) -> Iterator[dict[str, int | str | dict]]:
     """Принимает на вход список словарей, представляющих транзакции.
     Возвращает итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной."""
@@ -24,7 +24,7 @@ def filter_by_currency(
 
 def transaction_descriptions(
     lst_transactions: list[
-        dict[str, int | str | dict[str, str | dict[str, str]]]
+        dict[str, int | str | dict]
     ],
 ) -> Iterator[str]:
     """Принимает список словарей с транзакциями.
