@@ -3,7 +3,9 @@ import os
 from time import strftime, localtime, time
 
 
-def print_message(filename, text_message):
+def print_message(filename: str | None, text_message: str) -> None:
+    """ Вспомогательная функция для записи логов в файл
+    или вывода в консоль"""
     if filename is None:
         print(text_message)
     else:
