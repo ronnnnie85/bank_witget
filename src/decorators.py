@@ -1,5 +1,6 @@
 import functools
 import os
+from time import strftime, localtime, time
 
 
 def print_message(filename, text_message):
