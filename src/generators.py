@@ -2,9 +2,7 @@ from typing import Any, Iterator
 
 
 def filter_by_currency(
-    lst_transactions: list[
-        dict[str, int | str | dict]
-    ],
+    lst_transactions: list[dict[str, int | str | dict]],
     currency: str,
 ) -> Iterator[dict[str, int | str | dict]]:
     """Принимает на вход список словарей, представляющих транзакции.
@@ -23,9 +21,7 @@ def filter_by_currency(
 
 
 def transaction_descriptions(
-    lst_transactions: list[
-        dict[str, int | str | dict]
-    ],
+    lst_transactions: list[dict[str, int | str | dict]],
 ) -> Iterator[str]:
     """Принимает список словарей с транзакциями.
     Возвращает описание каждой операции по очереди."""
