@@ -47,6 +47,6 @@ def card_number_generator(begin: int, end: int) -> Iterator[str]:
     for card_num in lst_card_num:
         card_number = f"{card_num:016d}"
         formatted_card_number = " ".join(
-            [card_number[i:i + 4] for i in range(0, 16, 4)]
+            [card_number[i: i + 4] for i in range(0, 16, 4)]
         )
         yield formatted_card_number
