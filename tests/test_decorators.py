@@ -57,3 +57,21 @@ def test_log_console(capsys):
         "foo started with args: (10, 20) and kwargs: {}" in captured.out
         and "foo finished successfully with result: 2.0" in captured.out
     )
+
+
+def test_log_console_error(capsys):
+    @log()
+    def foo(x, y):
+        res = y / x
+        return res
+
+    try:
+        res = foo(0, 12)
+    except Exception as e:
+        res = 0
+
+    captured = capsys.readouterr()
+    assert (
+        "foo started with args: (0, 12) and kwargs: {}" in captured.out
+        and "foo error: ZeroDivisionError. Args: (0, 12) and kwargs: {}" in captured.out
+    )
