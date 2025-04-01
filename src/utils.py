@@ -17,7 +17,3 @@ def get_operations_data(filename: str) -> list:
     except FileNotFoundError:
         return []
 
-
-if __name__ == "__main__":
-    res = get_operations_data("../data/operations.json")
-    print(res)

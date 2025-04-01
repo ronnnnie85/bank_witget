@@ -34,7 +34,6 @@ def test_print_message_to_file():
     assert content == [first_message, second_message]
 
 
-
 def test_log_file():
     @log("log.txt")
     def foo(x, y):
@@ -74,5 +73,6 @@ def test_log_console_error(capsys):
     captured = capsys.readouterr()
     assert (
         "foo started with args: (0, 12) and kwargs: {}" in captured.out
-        and "foo error: ZeroDivisionError. Args: (0, 12) and kwargs: {}" in captured.out
+        and "foo error: ZeroDivisionError. Args: (0, 12) and kwargs: {}"
+        in captured.out
     )
