@@ -6,3 +6,4 @@ def test_get_transaction_amount_good_rub(good_transaction_rub):
 
 
 def test_get_transaction_amount_bad_rub(good_transaction_usd):
+    pass
