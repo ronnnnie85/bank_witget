@@ -16,4 +16,3 @@ def get_operations_data(filename: str) -> list:
                 return data
     except FileNotFoundError:
         return []
-
