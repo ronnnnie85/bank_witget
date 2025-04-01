@@ -1,4 +1,5 @@
 import os
+
 import requests
 from dotenv import load_dotenv
 
@@ -9,9 +10,7 @@ def get_transaction_amount(transaction: dict) -> float:
         transaction.get("operationAmount", {}).get("currency", {}).get("code")
     )
 
-    amount = transaction.get("operationAmount", {}).get("amount")
-
-    amount = float(amount)
+    amount = float(transaction.get("operationAmount", {}).get("amount"))
 
     if currency_code == "RUB":
         return amount
@@ -21,11 +20,14 @@ def get_transaction_amount(transaction: dict) -> float:
 
 def convert_amount(amount: float | int, currency_code: str) -> float | int:
     """Переводит сумму из валюты в рубли через API"""
-    url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency_code}&amount={amount}"
+    url = (
+        f"https://api.apilayer.com/exchangerates_data"
+        f"/convert?to=RUB&from={currency_code}&amount={amount}"
+    )
     load_dotenv()
     api_key = os.getenv("API_KEY")
     headers = {"apikey": api_key}
-    result = 0
+    result = 0.0
     try:
         response = requests.get(url, headers=headers)
     except requests.exceptions.RequestException as e:

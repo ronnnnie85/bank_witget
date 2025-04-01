@@ -66,9 +66,9 @@ def test_log_console_error(capsys):
         return res
 
     try:
-        res = foo(0, 12)
-    except Exception as e:
-        res = 0
+        foo(0, 12)
+    except Exception:
+        pass
 
     captured = capsys.readouterr()
     assert (

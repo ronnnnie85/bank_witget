@@ -1,11 +1,11 @@
 import os
+from unittest.mock import MagicMock, patch
 
 import pytest
 import requests
 from dotenv import load_dotenv
 
-from src.external_api import get_transaction_amount, convert_amount
-from unittest.mock import patch, MagicMock
+from src.external_api import convert_amount, get_transaction_amount
 
 
 def test_get_transaction_amount_good_rub(good_transaction_rub):
@@ -37,7 +37,8 @@ def test_convert_amount_good(mock_get):
 
     assert convert_amount(10.0, "USD") == float(res_value)
     mock_get.assert_called_once_with(
-        "https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=10.0",
+        "https://api.apilayer.com/exchangerates_data"
+        "/convert?to=RUB&from=USD&amount=10.0",
         headers={"apikey": api_key},
     )
 
@@ -58,16 +59,22 @@ def test_convert_amount_bad_request(mock_get):
     assert str(exc_info.value) == "Ошибка запроса. Internal Server Error."
 
     mock_get.assert_called_once_with(
-        "https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=10.0",
+        "https://api.apilayer.com/exchangerates_data"
+        "/convert?to=RUB&from=USD&amount=10.0",
         headers={"apikey": api_key},
     )
 
 
 @patch("requests.get")
 def test_convert_amount_request_exception(mock_get):
-    mock_get.side_effect = requests.exceptions.RequestException("Connection error")
+    mock_get.side_effect = requests.exceptions.RequestException(
+        "Connection error"
+    )
 
-    with pytest.raises(requests.exceptions.RequestException, match="Ошибка запроса. Connection error."):
+    with pytest.raises(
+        requests.exceptions.RequestException,
+        match="Ошибка запроса. Connection error.",
+    ):
         convert_amount(10.0, "USD")
 
     mock_get.assert_called_once()

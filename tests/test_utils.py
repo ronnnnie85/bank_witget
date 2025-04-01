@@ -2,8 +2,6 @@ import json
 import os
 import tempfile
 
-import pytest
-
 from src.utils import get_operations_data
 
 
