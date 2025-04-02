@@ -30,8 +30,8 @@ def test_print_message_to_file():
     # Проверяем, что оба сообщения в файле
     with open(test_file, "r", encoding="utf-8") as f:
         content = f.read().splitlines()
-    assert content == [first_message, second_message]
     os.remove(test_file)
+    assert content == [first_message, second_message]
 
 
 def test_log_file():
@@ -66,12 +66,13 @@ def test_log_console_error(capsys):
         return res
 
     try:
-        res = foo(0, 12)
-    except Exception as e:
-        res = 0
+        foo(0, 12)
+    except Exception:
+        pass
 
     captured = capsys.readouterr()
     assert (
         "foo started with args: (0, 12) and kwargs: {}" in captured.out
-        and "foo error: ZeroDivisionError. Args: (0, 12) and kwargs: {}" in captured.out
+        and "foo error: ZeroDivisionError. Args: (0, 12) and kwargs: {}"
+        in captured.out
     )
