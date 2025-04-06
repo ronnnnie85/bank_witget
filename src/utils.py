@@ -1,5 +1,12 @@
 import json
+import logging
+import os
 
+from src import loggers
+
+name = os.path.splitext(os.path.basename(__file__))[0]
+filename = os.path.join(os.path.dirname(__file__), "..\\logs\\", f"{name}.log")
+logger = loggers.create_logger(name, filename, logging.DEBUG)
 
 def get_operations_data(filename: str) -> list:
     """Обрабатывает JSON-файл и преобразует в список транзакций"""
@@ -7,12 +14,15 @@ def get_operations_data(filename: str) -> list:
         with open(filename, "r", encoding="utf-8") as json_file:
             try:
                 data = json.load(json_file)
-            except json.decoder.JSONDecodeError:
+            except json.decoder.JSONDecodeError as e:
+                logger.error(f"Произошла ошибка {e}")
                 return []
             else:
                 if not type(data) is list:
+                    logger.critical(f"В полученном файле не {type(list)}, а {type(data)}")
                     return []
-
+                logger.info(f"Файл {filename} успешно обработан")
                 return data
-    except FileNotFoundError:
+    except FileNotFoundError as e:
+        logger.error(f"Произошла ошибка {e}")
         return []
