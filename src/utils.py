@@ -5,8 +5,11 @@ import os
 from src import loggers
 
 name = os.path.splitext(os.path.basename(__file__))[0]
-filename = os.path.join(os.path.dirname(__file__), "..\\logs\\",
-                        f"{name}.log")
+filename = os.path.join(
+    os.path.dirname(__file__),
+    "..\\logs\\",
+    f"{name}.log"
+)
 logger = loggers.create_logger(name, filename, logging.DEBUG)
 
 
