@@ -1,10 +1,7 @@
 import pytest
 
-from src.masks import (
-    get_mask_account,
-    get_mask_card_number,
-    is_wrong_input_format,
-)
+from src.masks import (get_mask_account, get_mask_card_number,
+                       is_wrong_input_format)
 
 
 # Функция get_mask_card_number

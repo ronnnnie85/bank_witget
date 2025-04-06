@@ -5,12 +5,10 @@ from typing import Union
 from src import loggers
 
 name = os.path.splitext(os.path.basename(__file__))[0]
-filename = os.path.join(
-    os.path.dirname(__file__),
-    "..\\logs\\",
-    f"{name}.log"
+file_name = os.path.join(
+    os.path.dirname(__file__), "..\\logs\\", f"{name}.log"
 )
-logger = loggers.create_logger(name, filename, logging.DEBUG)
+logger = loggers.create_logger(name, file_name, logging.DEBUG)
 
 
 def get_mask_card_number(card_number: Union[int, str]) -> str:
