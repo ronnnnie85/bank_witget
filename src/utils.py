@@ -18,20 +18,18 @@ def get_operations_data(filename: str) -> list:
             try:
                 data = json.load(json_file)
             except json.decoder.JSONDecodeError as e:
-                logger.error(f"Функция get_operations_data. Ошибка: {e}")
+                logger.error(f"Ошибка: {e}")
                 return []
             else:
                 if not type(data) is list:
                     logger.critical(
-                        f"Функция get_operations_data. В полученном файле "
-                        f"не {type(list)}, а {type(data)}"
+                        f"В полученном файле не {type(list)}, а {type(data)}"
                     )
                     return []
                 logger.info(
-                    f"Функция get_operations_data. Файл {filename} "
-                    f"успешно обработан"
+                    f"Файл {filename} успешно обработан"
                 )
                 return data
     except FileNotFoundError as e:
-        logger.error(f"Функция get_operations_data. Ошибка: {e}")
+        logger.error(f"Ошибка: {e}")
         return []
