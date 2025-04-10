@@ -1,6 +1,8 @@
 import logging
 
-FORMAT_LOG = "%(asctime)s  %(module)s.%(funcName)s - %(levelname)s: %(message)s"
+FORMAT_LOG = (
+    "%(asctime)s  %(module)s.%(funcName)s - %(levelname)s: %(message)s"
+)
 FORMAT_DATE_LOG = "%Y-%m-%d %H:%M:%S"
 
 

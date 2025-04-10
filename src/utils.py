@@ -26,9 +26,7 @@ def get_operations_data(filename: str) -> list:
                         f"В полученном файле не {type(list)}, а {type(data)}"
                     )
                     return []
-                logger.info(
-                    f"Файл {filename} успешно обработан"
-                )
+                logger.info(f"Файл {filename} успешно обработан")
                 return data
     except FileNotFoundError as e:
         logger.error(f"Ошибка: {e}")

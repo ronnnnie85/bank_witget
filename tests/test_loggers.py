@@ -1,7 +1,7 @@
 import logging
 import os
 
-from src.loggers import create_logger, FORMAT_LOG, FORMAT_DATE_LOG
+from src.loggers import FORMAT_DATE_LOG, FORMAT_LOG, create_logger
 
 
 def test_create_logger():
