@@ -51,6 +51,12 @@
 1. Функция create_logger для логирования. Добавлено сохранение логов в файл для модулей 
 masks, utils. Логи сохранены в директории logs в корне проекта.
 
+**Модуль reading_files**
+1. Функция read_transactions_from_csv читает финансовые операции из CSV-файла
+    и возвращает список словарей с транзакциями.
+2. Функция read_transactions_from_excel читает финансовые операции из Excel-файла
+    и возвращает список словарей с транзакциями.
+
 ## Установка:
 
 1. Клонируйте репозиторий:
@@ -79,6 +85,10 @@ pytest
 *tests/test_widget.py
 *tests/test_generators.py
 *tests/test_decorators.py
+*tests/test_external_api.py
+*tests/test_utils.py
+*tests/test_loggers.py
+*tests/test_reading_files.py
 
 ## Покрытие кода
 Для оценки покрытия кода тестами используется библиотека coverage. Чтобы проверить покрытие, выполните:
