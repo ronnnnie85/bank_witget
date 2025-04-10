@@ -80,15 +80,15 @@ pytest
 
 ## Cтруктура тестов
 Тесты находятся в директории tests/. Каждый модуль тестируется отдельным файлом:
-*tests/test_masks.py
-*tests/test_processing.py
-*tests/test_widget.py
-*tests/test_generators.py
-*tests/test_decorators.py
-*tests/test_external_api.py
-*tests/test_utils.py
-*tests/test_loggers.py
-*tests/test_reading_files.py
+* tests/test_masks.py
+* tests/test_processing.py
+* tests/test_widget.py
+* tests/test_generators.py
+* tests/test_decorators.py
+* tests/test_external_api.py
+* tests/test_utils.py
+* tests/test_loggers.py
+* tests/test_reading_files.py
 
 ## Покрытие кода
 Для оценки покрытия кода тестами используется библиотека coverage. Чтобы проверить покрытие, выполните:
