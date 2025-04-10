@@ -1,7 +1,7 @@
 import logging
 import os
 
-from src.loggers import create_logger
+from src.loggers import create_logger, FORMAT_LOG, FORMAT_DATE_LOG
 
 
 def test_create_logger():
@@ -18,7 +18,5 @@ def test_create_logger():
     assert handler.mode == "w"
     assert handler.encoding == "utf-8"
 
-    assert formatter._fmt == (
-        "%(asctime)s - %(name)s - %(levelname)s - " "%(message)s"
-    )
-    assert formatter.datefmt == "%Y-%m-%d %H:%M:%S"
+    assert formatter._fmt == FORMAT_LOG
+    assert formatter.datefmt == FORMAT_DATE_LOG
