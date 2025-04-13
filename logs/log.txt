@@ -217,3 +217,21 @@
 [2025-04-13 23:51:54] foo started with args: (0, 10) and kwargs: {}
 [2025-04-13 23:51:54] foo error: ZeroDivisionError. Args: (0, 10) and kwargs: {}
 
+[2025-04-14 00:03:38] foo started with args: (10, 20) and kwargs: {}
+[2025-04-14 00:03:38] foo finished successfully with result: 2.0
+
+[2025-04-14 00:03:38] foo started with args: (0, 10) and kwargs: {}
+[2025-04-14 00:03:38] foo error: ZeroDivisionError. Args: (0, 10) and kwargs: {}
+
+[2025-04-14 00:14:35] foo started with args: (10, 20) and kwargs: {}
+[2025-04-14 00:14:35] foo finished successfully with result: 2.0
+
+[2025-04-14 00:14:35] foo started with args: (0, 10) and kwargs: {}
+[2025-04-14 00:14:35] foo error: ZeroDivisionError. Args: (0, 10) and kwargs: {}
+
+[2025-04-14 00:20:46] foo started with args: (10, 20) and kwargs: {}
+[2025-04-14 00:20:46] foo finished successfully with result: 2.0
+
+[2025-04-14 00:20:46] foo started with args: (0, 10) and kwargs: {}
+[2025-04-14 00:20:46] foo error: ZeroDivisionError. Args: (0, 10) and kwargs: {}
+
