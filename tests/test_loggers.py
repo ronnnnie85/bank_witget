@@ -29,6 +29,4 @@ def test_create_logger_without_path(mock_exists, mock_makedirs):
     mock_exists.return_value = False
     tmp_path = os.path.join(os.path.dirname(__file__), "test.log")
 
-    logger = create_logger("test", tmp_path, logging.DEBUG)
-    handler = logger.handlers[0]
-    formatter = handler.formatter
+    create_logger("test", tmp_path, logging.DEBUG)

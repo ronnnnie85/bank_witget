@@ -14,8 +14,7 @@ def create_logger(
     logger = logging.getLogger(name_logger)
     logger.setLevel(logging_level)
 
-    logs_path = os.path.join(
-    os.path.dirname(__file__), "..\\logs\\")
+    logs_path = os.path.join(os.path.dirname(__file__), "..\\logs\\")
 
     if not os.path.exists(logs_path):
         os.makedirs(logs_path)

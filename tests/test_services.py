@@ -1,8 +1,6 @@
-from unittest.mock import patch
-
 import pytest
 
-from src.services import search_for_string, counting_operations
+from src.services import counting_operations, search_for_string
 
 
 def test_search_for_string(true_transactions):
@@ -15,9 +13,13 @@ def test_search_for_string_empty_str(true_transactions):
 
 
 def test_counting_operations(true_transactions):
-    assert counting_operations(true_transactions, ["Перевод"]) == {"Перевод": 5}
+    assert counting_operations(true_transactions, ["Перевод"]) == {
+        "Перевод": 5
+    }
 
 
 def test_counting_operations_empty_str(true_transactions):
-    with pytest.raises(TypeError, match="В списке категорий присутствуют не строки"):
+    with pytest.raises(
+        TypeError, match="В списке категорий присутствуют не строки"
+    ):
         assert counting_operations(true_transactions, [True])
