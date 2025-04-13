@@ -1,5 +1,10 @@
 import logging
 
+FORMAT_LOG = (
+    "%(asctime)s  %(module)s.%(funcName)s - %(levelname)s: %(message)s"
+)
+FORMAT_DATE_LOG = "%Y-%m-%d %H:%M:%S"
+
 
 def create_logger(
     name_logger: str, name_log_file: str, logging_level: int
@@ -13,10 +18,7 @@ def create_logger(
     )
     file_handler.setLevel(logging_level)
 
-    file_formatter = logging.Formatter(
-        "%(asctime)s  %(module)s.%(funcName)s - %(levelname)s: %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-    )
+    file_formatter = logging.Formatter(FORMAT_LOG, FORMAT_DATE_LOG)
 
     file_handler.setFormatter(file_formatter)
 

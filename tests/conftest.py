@@ -1,3 +1,4 @@
+import pandas as pd
 import pytest
 
 
@@ -207,3 +208,20 @@ def good_transaction_usd():
         "from": "Visa Classic 6831982476737658",
         "to": "Visa Platinum 8990922113665229",
     }
+
+
+@pytest.fixture
+def good_df():
+    return pd.DataFrame(
+        {
+            "id": [650703],
+            "state": ["EXECUTED"],
+            "date": ["2023-09-05T11:30:32Z"],
+            "amount": [16210],
+            "currency_name": ["Sol"],
+            "currency_code": ["PEN"],
+            "from": ["Счет 58803664561298323391"],
+            "to": ["Счет 39745660563456619397"],
+            "description": ["Перевод организации"],
+        }
+    )
