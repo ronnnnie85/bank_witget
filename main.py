@@ -47,9 +47,6 @@ def main() -> None:
                     path, "data", "transactions_excel.xlsx"
                 )
                 transactions = read_transactions_from_excel(file_path)
-            # case _:
-            #     print("Неверный выбор.")
-            #     return
 
         while True:
             status = (
