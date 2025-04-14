@@ -57,7 +57,7 @@ def is_wrong_parameter(lst_dct: list[dict[str, Union[str, int]]]) -> bool:
             else:
                 for key, value in dct.items():
                     if not (
-                        type(value) is str or type(value) is int or type(value) is dict or type(value) is float
+                        type(value) is str|int|dict|float
                     ) or not isinstance(key, str):
                         return True
 

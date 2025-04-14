@@ -53,7 +53,10 @@ def main():
                 break
             print(f"Статус операции \"{status}\" недоступен.")
 
-        transactions = filter_by_state(transactions, status)
+        try:
+            transactions = filter_by_state(transactions, status)
+        except Exception as e:
+            print(f"Возникла ошибка: {e}")
 
         if not transactions:
             print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
@@ -63,7 +66,10 @@ def main():
         if sort_answer == "y":
             order = input("Отсортировать по возрастанию? y/N\n").strip().lower()
             descending = order != "y"
-            transactions = sort_by_date(transactions, descending)
+            try:
+                transactions = sort_by_date(transactions, descending)
+            except Exception as e:
+                print(f"Возникла ошибка: {e}")
 
         currency_answer = input("Выводить только рублевые транзакции? y/N\n").strip().lower()
         if currency_answer == "y":
@@ -77,7 +83,10 @@ def main():
             "Отфильтровать список транзакций по определенному слову в описании? y/N\n").strip().lower()
         if description_filter == "y":
             keyword = input("Введите слово для поиска: ").strip()
-            transactions = search_for_string(transactions, keyword)
+            try:
+                transactions = search_for_string(transactions, keyword)
+            except Exception as e:
+                print(f"Возникла ошибка: {e}")
 
         if not transactions:
             print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
@@ -94,8 +103,17 @@ def main():
             from_info = transaction.get("from", "")
             to_info = transaction.get("to", "")
 
-            from_masked = mask_account_card(from_info) if from_info and type(from_info) is str else ""
-            to_masked = mask_account_card(to_info) if to_info and type(to_info) is str else ""
+            try:
+                from_masked = mask_account_card(from_info) if from_info and type(from_info) is str else ""
+            except Exception as e:
+                from_masked = ""
+                print(f"Возникла ошибка: {e}")
+
+            try:
+                to_masked = mask_account_card(to_info) if to_info and type(to_info) is str else ""
+            except Exception as e:
+                from_masked = ""
+                print(f"Возникла ошибка: {e}")
 
             amount_info = transaction.get("operationAmount", {})
             amount = amount_info.get("amount", "")
