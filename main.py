@@ -158,9 +158,8 @@ def main() -> None:
                 to_masked = ""
                 print(f"Возникла ошибка: {e}")
 
-            amount_info = transaction.get("operationAmount", {})
-            amount = amount_info.get("amount", "")
-            currency = amount_info.get("currency", {}).get("name", "")
+            amount = transaction.get("amount", "")
+            currency = transaction.get("currency_name", "")
 
             print(f"{date} {desc}")
             if from_masked and to_masked:

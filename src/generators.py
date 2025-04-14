@@ -9,10 +9,7 @@ def filter_by_currency(
     Возвращает итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной."""
     filtered_transactions: Any = filter(
-        lambda dct: dct.get("operationAmount", {})
-        .get("currency", {})
-        .get("code")
-        == currency,
+        lambda dct: dct.get("currency_code", "") == currency,
         lst_transactions,
     )
 
