@@ -179,6 +179,41 @@ def true_transactions():
 
 
 @pytest.fixture
+def true_transactions_short():
+    return [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {
+                "amount": "9824.07",
+                "currency": {"name": "USD", "code": "USD"},
+            },
+            "description": "Перевод организации",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        },
+    ]
+
+
+@pytest.fixture
+def true_refactoring_transactions_short():
+    return [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "amount": "9824.07",
+            "currency_name": "USD",
+            "currency_code": "USD",
+            "description": "Перевод организации",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        },
+    ]
+
+
+@pytest.fixture
 def good_transaction_rub():
     return {
         "id": 873106923,
