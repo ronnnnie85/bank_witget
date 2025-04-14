@@ -35,7 +35,7 @@ def default_list():
 
 @pytest.fixture
 def wrong_type_col():
-    return {"key": "value"}
+    return "key", "value"
 
 
 @pytest.fixture

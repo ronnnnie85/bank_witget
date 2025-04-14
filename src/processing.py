@@ -46,7 +46,7 @@ def sort_by_date(
     )
 
 
-def is_wrong_parameter(lst_dct: list[dict[str, Union[str, int]]]) -> bool:
+def is_wrong_parameter(lst_dct: list[dict]) -> bool:
     """Вспомогательная функция для проверки параметров"""
     if not isinstance(lst_dct, list):
         return True
@@ -57,7 +57,7 @@ def is_wrong_parameter(lst_dct: list[dict[str, Union[str, int]]]) -> bool:
             else:
                 for key, value in dct.items():
                     if not (
-                        type(value) is str|int|dict|float
+                        type(value) in {str, int, dict, float}
                     ) or not isinstance(key, str):
                         return True
 
