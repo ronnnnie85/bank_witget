@@ -5,15 +5,17 @@ import tempfile
 from src.utils import get_operations_data
 
 
-def test_get_operations_data_valid_file(true_transactions):
-    test_data = true_transactions
+def test_get_operations_data_valid_file(
+    true_transactions_short, true_refactoring_transactions_short
+):
+    test_data = true_transactions_short
 
     tmp_path = tempfile.mktemp(suffix=".json")
     with open(tmp_path, "w", encoding="utf-8") as f:
         json.dump(test_data, f)
 
     result = get_operations_data(tmp_path)
-    assert result == test_data
+    assert result == true_refactoring_transactions_short
 
     if os.path.exists(tmp_path):
         os.remove(tmp_path)

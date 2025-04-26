@@ -1,4 +1,5 @@
 import logging
+import os
 
 FORMAT_LOG = (
     "%(asctime)s  %(module)s.%(funcName)s - %(levelname)s: %(message)s"
@@ -13,8 +14,13 @@ def create_logger(
     logger = logging.getLogger(name_logger)
     logger.setLevel(logging_level)
 
+    logs_path = os.path.join(os.path.dirname(__file__), "..\\logs\\")
+
+    if not os.path.exists(logs_path):
+        os.makedirs(logs_path)
+
     file_handler = logging.FileHandler(
-        name_log_file, mode="w", encoding="utf-8"
+        os.path.join(logs_path, name_log_file), mode="w", encoding="utf-8"
     )
     file_handler.setLevel(logging_level)
 

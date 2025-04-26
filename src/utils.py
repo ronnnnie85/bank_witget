@@ -5,9 +5,7 @@ import os
 from src import loggers
 
 name = os.path.splitext(os.path.basename(__file__))[0]
-file_name = os.path.join(
-    os.path.dirname(__file__), "..\\logs\\", f"{name}.log"
-)
+file_name = f"{name}.log"
 logger = loggers.create_logger(name, file_name, logging.DEBUG)
 
 
@@ -27,7 +25,29 @@ def get_operations_data(filename: str) -> list:
                     )
                     return []
                 logger.info(f"Файл {filename} успешно обработан")
-                return data
+
+                result = []
+                for transaction in data:
+                    transformed = {
+                        "id": transaction.get("id", ""),
+                        "state": transaction.get("state", ""),
+                        "date": transaction.get("date", ""),
+                        "amount": transaction.get("operationAmount", {}).get(
+                            "amount", ""
+                        ),
+                        "currency_name": transaction.get("operationAmount", {})
+                        .get("currency", {})
+                        .get("name", ""),
+                        "currency_code": transaction.get("operationAmount", {})
+                        .get("currency", {})
+                        .get("code", ""),
+                        "description": transaction.get("description", ""),
+                        "from": transaction.get("from", ""),
+                        "to": transaction.get("to", ""),
+                    }
+                    result.append(transformed)
+
+                return result
     except FileNotFoundError as e:
         logger.error(f"Ошибка: {e}")
         return []
