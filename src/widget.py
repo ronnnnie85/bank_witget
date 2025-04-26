@@ -1,3 +1,4 @@
+import calendar
 import re
 from datetime import datetime
 
@@ -6,32 +7,53 @@ from .masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(account_card_data: str) -> str:
     """Обрабатывает информацию о картах и счетах"""
-    match = re.search(r"(\D+)\s(\d+)", account_card_data)  # Получаю группировки строки по шаблону (буквы) (цифры)
+    if not isinstance(account_card_data, str):
+        raise TypeError("Ошибка: некорректный тип входных данных.")
+
+    match = re.search(
+        r"(\D+)\s(\d+)", account_card_data
+    )  # Получаю группировки строки по шаблону (буквы) (цифры)
 
     if match is None:
-        return "Некорректный формат данных"
+        raise ValueError("Ошибка: некорректный формат входных данных.")
 
     prefix, number = match.groups()
-
-    # if prefix.lower().startswith("счет"):  # Первым идет Счет, значит обрабатываем как счет
-    #     masked_number = get_mask_account(int(number))
-    # elif len(number) == 16:  # Обрабатываем как карту
-    #     masked_number = get_mask_card_number(int(number))
-    # else:
-    #     return "Некорректный формат данных"
 
     if len(number) == 20:  # Первым идет Счет, значит обрабатываем как счет
         masked_number = get_mask_account(number)
     elif len(number) == 16:  # Обрабатываем как карту
         masked_number = get_mask_card_number(number)
     else:
-        return "Некорректный формат данных"
+        raise ValueError("Ошибка: некорректная длина входных данных.")
 
     return f"{prefix.strip()} {masked_number}"
 
 
 def get_date(raw_date: str) -> str:
     """Конвертирует строку с датой из формата ISO 8601 в DD-MM-YYYY"""
-    dt = datetime.strptime(raw_date, "%Y-%m-%dT%H:%M:%S.%f")  # Получаем из строки объект datetime по шаблону
+    if not isinstance(raw_date, str):
+        raise TypeError("Ошибка: некорректный тип входных данных.")
+
+    pattern = (
+        r"[0-9][0-9](0[1-9]|[1-9][0-9])\-(0[1-9]|1[0-2])-"
+        r"(0[1-9]|[1-2][0-9]|3[0-1])"
+        r"T([0-1][0-9]|2[0-3]):([0-4][0-9]|5[0-9]):([0-4][0-9]|5[0-9])"
+        r"(\.[0-9][0-9][0-9][0-9](0[1-9]|[1-9][0-9])){0,1}"
+    )
+    match = re.search(pattern, raw_date)
+
+    if match is None:
+        raise ValueError("Ошибка: некорректный формат даты.")
+
+    is_leap_year = calendar.isleap(int(raw_date[0:4]))
+    if raw_date[5:7] == "02" and (
+        (is_leap_year and int(raw_date[8:10]) > 29)
+        or (not is_leap_year and int(raw_date[8:10]) > 28)
+    ):
+        raise ValueError("Ошибка: некорректный формат даты в високосный год.")
+
+    dt = datetime.fromisoformat(
+        raw_date
+    )  # Получаем из строки объект datetime по шаблону
 
     return dt.strftime("%d.%m.%Y")  # Преобразуем в нужный формат в строку
